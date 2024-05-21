@@ -5,6 +5,7 @@ import { useTransition } from "react";
 import { onFollow, onUnfollow } from "@/actions/follow";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { onBlock } from "@/actions/block";
 
 interface ActionsProps {
   isFollowing: boolean;
@@ -39,9 +40,29 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
       handleFollow();
     }
   };
+
+  const handleBlock = () => {
+    startTransition(() => {
+      onBlock(userId)
+        .then((data) =>
+          toast.success(`Blocked the user ${data.blocked.username}`)
+        )
+        .catch(() => toast.error("Something went wrong"));
+    });
+  };
+
   return (
-    <Button disabled={isPending} onClick={onClick} variant={"primary"}>
-      {isFollowing ? "Unfollow" : "Follow"}
-    </Button>
+    <>
+      <Button disabled={isPending} onClick={onClick} variant={"primary"}>
+        {isFollowing ? "Unfollow" : "Follow"}
+      </Button>
+      <Button
+        onClick={handleBlock}
+        disabled={isPending}
+        variant={"destructive"}
+      >
+        Block
+      </Button>
+    </>
   );
 };

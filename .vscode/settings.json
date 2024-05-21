@@ -4,5 +4,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "typescript.tsserver.maxTsServerMemory": 4096
 }
