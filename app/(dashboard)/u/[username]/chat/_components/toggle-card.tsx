@@ -26,7 +26,7 @@ export const ToggleCard = ({ field, label, value }: ToggleCardProps) => {
     <div className=" rounded-xl bg-muted p-6 ">
       <div className="flex items-center justify-between">
         <p className="font-semibold shrink-0">{label}</p>
-        <div className="space-y-2">
+        <div className="space-y-2 ml-5">
           <Switch
             disabled={isPending}
             onCheckedChange={onChange}

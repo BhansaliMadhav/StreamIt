@@ -25,7 +25,11 @@ export const Video = ({ hostName, hostIdentity }: VideoProps) => {
   ]).filter((track) => track.participant.identity === hostIdentity);
   let content;
   if (!participant && connectionState === ConnectionState.Connected) {
-    content = <OfflineVideo username={hostName} />;
+    content = (
+      <div className="aspect-video">
+        <OfflineVideo username={hostName} />
+      </div>
+    );
   } else if (!participant || tracks.length === 0) {
     content = <LoadingVideo label={connectionState} />;
   } else {
@@ -33,7 +37,7 @@ export const Video = ({ hostName, hostIdentity }: VideoProps) => {
   }
   return (
     <div
-      className="w-full aspect-video border-b group"
+      className="aspect-video border-b group"
       style={{ position: "relative" }}
     >
       {content}
