@@ -14,6 +14,7 @@ interface RecommendedProps {
 export const Recommended = ({ data }: RecommendedProps) => {
   const { collapsed } = useSidebar((state) => state);
   const showLabel = !collapsed && data.length > 0;
+  console.log("isLive SIdeBar", data[0].stream?.isLive);
   //   console.log(data.length);
 
   return (

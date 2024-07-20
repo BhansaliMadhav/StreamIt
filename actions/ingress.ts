@@ -70,6 +70,7 @@ export const createIngress = async (ingresType: IngressInput) => {
       ingressId: ingress.ingressId,
       serverUrl: ingress.url,
       streamKey: ingress.streamKey,
+      isLive: true,
     },
   });
   revalidatePath(`/u/${self.username}/keys`);

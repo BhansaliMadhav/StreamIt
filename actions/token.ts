@@ -14,7 +14,7 @@ export const createViewerToken = async (hostIdentity: string) => {
   } catch {
     const id = v4();
     const username = `guest#${Math.floor(Math.random() * 1000)}`;
-    const self = { id, username };
+    self = { id, username };
   }
   const host = await getUserById(hostIdentity);
 
