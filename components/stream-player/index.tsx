@@ -16,14 +16,28 @@ import { Header, HeaderSkeleton } from "./header";
 import { InfoCard } from "./info-card";
 import { AboutCard } from "./about-card";
 
+type CustomStream = {
+  id: string;
+  thumbnailUrl: string | null;
+  name: string;
+  isChatEnabled: boolean;
+  isChatDelayed: boolean;
+  isLive: boolean;
+  isChatFollowersOnly: boolean;
+};
+
+type CustomUser = {
+  id: string;
+  username: string;
+  bio: string | null;
+  stream: CustomStream | null;
+  imageUrl: string;
+  _count: { followedBy: number };
+};
+
 interface StreamPlayerProps {
-  user: User & {
-    stream: Stream | null;
-    _count: {
-      followedBy: number;
-    };
-  };
-  stream: Stream;
+  user: CustomUser;
+  stream: CustomStream;
   isFollowing: boolean;
 }
 

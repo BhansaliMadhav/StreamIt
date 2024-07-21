@@ -21,12 +21,10 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
 
   const onVolumeChange = (value: number) => {
     setVolume(value);
-    console.log(volume);
 
     if (videoRef?.current) {
       videoRef.current.muted = value === 0;
       videoRef.current.volume = +value * 0.01;
-      // console.log(volume * 0.01);
     }
   };
 
@@ -36,7 +34,6 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     if (videoRef?.current) {
       videoRef.current.muted = !isMuted;
       videoRef.current.volume = isMuted ? 0.5 : 0;
-      console.log(videoRef.current.volume);
     }
   };
   useEffect(() => {

@@ -1,8 +1,7 @@
 import { db } from "./db";
-
 import { getSelf } from "./auth-service";
 
-export const getStreams = async () => {
+export const getSearch = async (term?: string) => {
   let userId;
   try {
     const self = await getSelf();
@@ -24,13 +23,28 @@ export const getStreams = async () => {
             },
           },
         },
+        OR: [
+          {
+            name: {
+              contains: term,
+            },
+          },
+          {
+            user: {
+              username: {
+                contains: term,
+              },
+            },
+          },
+        ],
       },
       select: {
-        id: true,
         user: true,
-        isLive: true,
+        id: true,
         name: true,
+        isLive: true,
         thumbnailUrl: true,
+        updatedAt: true,
       },
       orderBy: [
         {
@@ -43,12 +57,29 @@ export const getStreams = async () => {
     });
   } else {
     streams = await db.stream.findMany({
+      where: {
+        OR: [
+          {
+            name: {
+              contains: term,
+            },
+          },
+          {
+            user: {
+              username: {
+                contains: term,
+              },
+            },
+          },
+        ],
+      },
       select: {
-        id: true,
         user: true,
-        isLive: true,
+        id: true,
         name: true,
+        isLive: true,
         thumbnailUrl: true,
+        updatedAt: true,
       },
       orderBy: [
         {

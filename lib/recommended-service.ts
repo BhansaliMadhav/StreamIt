@@ -10,7 +10,6 @@ export const getRecommended = async () => {
   } catch {
     userId = null;
   }
-  console.log(userId);
 
   let users = [];
   if (userId) {

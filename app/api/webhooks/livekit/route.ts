@@ -8,8 +8,6 @@ const receiver = new WebhookReceiver(
 );
 
 export async function POST(req: Request) {
-  console.log("Triggered POST function");
-
   const body = await req.text();
   const headersPayload = headers();
   const authorization = headersPayload.get("Authorization");

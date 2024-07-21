@@ -4,7 +4,6 @@ import { error } from "console";
 
 export const getSelf = async () => {
   const self = await currentUser();
-  // console.log(self);
 
   if (!self || !self.username) {
     throw new Error("Unauthorized");

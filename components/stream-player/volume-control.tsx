@@ -33,7 +33,6 @@ export const VolumeControl = ({
     setVolume(value);
   }, [value]);
   const handelChange = (value: number[]) => {
-    // console.log(value[0]);
     onChange(value[0]);
   };
 
