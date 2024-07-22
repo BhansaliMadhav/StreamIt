@@ -19,6 +19,7 @@ export const isBlockedByUser = async (id: string) => {
         blockedId: otherUser.id,
       },
     });
+    console.log("existing block", existingBlock);
 
     return !!existingBlock;
   } catch {
@@ -26,9 +27,10 @@ export const isBlockedByUser = async (id: string) => {
   }
 };
 
-export const isBlockedByHost = async (hostId: string, blockUserId: string) => {
+export const isBlockedByHost = async (hostId: string) => {
   try {
-    const otherUser = await db.user.findUnique({ where: { id: blockUserId } });
+    const self = await getSelf();
+    const otherUser = await db.user.findUnique({ where: { id: self.id } });
 
     if (!otherUser) {
       throw new Error("User not found");
