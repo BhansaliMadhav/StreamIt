@@ -8,6 +8,9 @@ import { useSidebar } from "@/store/use-sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserAvatar } from "@/components/user-avatar";
 import { LiveBadge } from "@/components/live-badge";
+
+import { motion } from "framer-motion";
+
 interface UserItemsProps {
   username: string;
   imageUrl: string;
@@ -21,27 +24,33 @@ export const UserItems = ({ username, imageUrl, isLive }: UserItemsProps) => {
   const isActive = pathname === href;
 
   return (
-    <Button
-      asChild
-      variant={"ghost"}
-      className={cn(
-        "w-full h-12",
-        collapsed ? "justify-center" : "justify-start",
-        isActive && "bg-accent"
-      )}
-    >
-      <Link href={href}>
-        <div
-          className={cn(
-            "flex w-full items-center gap-x-4",
-            collapsed && "justify-center"
-          )}
-        >
-          <UserAvatar imageUrl={imageUrl} username={username} isLive={isLive} />
-          {!collapsed && <p className=" truncate">{username}</p>}
-          {!collapsed && isLive && <LiveBadge className="ml-auto" />}
-        </div>
-      </Link>
-    </Button>
+    <motion.div whileHover={{ scale: 1.075, transition: { duration: 0.1 } }}>
+      <Button
+        asChild
+        variant={"ghost"}
+        className={cn(
+          "w-full h-12",
+          collapsed ? "justify-center" : "justify-start",
+          isActive && "bg-accent"
+        )}
+      >
+        <Link href={href}>
+          <div
+            className={cn(
+              "flex w-full items-center gap-x-4",
+              collapsed && "justify-center"
+            )}
+          >
+            <UserAvatar
+              imageUrl={imageUrl}
+              username={username}
+              isLive={isLive}
+            />
+            {!collapsed && <p className=" truncate">{username}</p>}
+            {!collapsed && isLive && <LiveBadge className="ml-auto" />}
+          </div>
+        </Link>
+      </Button>
+    </motion.div>
   );
 };

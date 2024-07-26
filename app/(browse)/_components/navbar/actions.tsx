@@ -20,7 +20,7 @@ export const Actions = async () => {
           <Button
             size={"sm"}
             variant={"ghost"}
-            className=" text-muted-foreground hover:text-primary"
+            className=" text-muted-foreground hover:text-primary hover:scale-125 transition"
             asChild
           >
             <Link href={`/u/${user.username}`}>

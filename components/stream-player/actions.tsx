@@ -6,13 +6,14 @@ import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { Skeleton } from "../ui/skeleton";
-
 import { useRouter } from "next/navigation";
 
 import { useTransition } from "react";
 
 import { onFollow, onUnfollow } from "@/actions/follow";
 import { toast } from "sonner";
+
+import { motion } from "framer-motion";
 
 interface ActionProps {
   isFollowing: boolean;
@@ -61,18 +62,29 @@ export const Actions = ({ isFollowing, isHost, hostIdentity }: ActionProps) => {
     }
   };
   return (
-    <Button
-      disabled={isPending || isHost}
-      onClick={toggleFollow}
-      variant={"primary"}
-      size={"sm"}
-      className="w-full lg:w-auto"
+    <motion.div
+      whileHover={{
+        scale: 1.075,
+        opacity: 0.95,
+        transition: { duration: 0.15, type: "spring" },
+      }}
     >
-      <Heart
-        className={cn("h-4 w-4 mr-2", isFollowing ? "fill-white" : "fill-none")}
-      />
-      {isFollowing ? "Unfollow" : "Follow"}
-    </Button>
+      <Button
+        disabled={isPending || isHost}
+        onClick={toggleFollow}
+        variant={"primary"}
+        size={"sm"}
+        className="w-full lg:w-auto"
+      >
+        <Heart
+          className={cn(
+            "h-4 w-4 mr-2",
+            isFollowing ? "fill-white" : "fill-none"
+          )}
+        />
+        {isFollowing ? "Unfollow" : "Follow"}
+      </Button>
+    </motion.div>
   );
 };
 

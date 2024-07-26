@@ -7,7 +7,6 @@ import { useViewerToken } from "@/hooks/use-viewer-token";
 
 import { Chat, ChatSkeleton } from "./chat";
 
-import { Stream, User } from "@prisma/client";
 import { LiveKitRoom } from "@livekit/components-react";
 
 import { Video, VideoSkeleton } from "./video";
