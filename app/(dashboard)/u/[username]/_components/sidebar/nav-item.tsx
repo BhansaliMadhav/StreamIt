@@ -7,6 +7,8 @@ import { useCreatorSidebar } from "@/store/use-creator-sidebar";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
+import { motion } from "framer-motion";
+
 interface NavItemProps {
   label: string;
   icon: LucideIcon;
@@ -22,22 +24,24 @@ export const NavItem = ({
 }: NavItemProps) => {
   const { collapsed } = useCreatorSidebar();
   return (
-    <Button
-      asChild
-      variant={"ghost"}
-      className={cn(
-        "w-full h-12",
-        collapsed ? "justify-center" : "justify-start",
-        isActive && " bg-accent"
-      )}
-    >
-      <Link href={href}>
-        <div className="flex items-center gap-x-4">
-          <Icon className={cn("h-4 w-4", collapsed ? "mr-0" : "mr-2")} />
-          {!collapsed && <span>{label}</span>}
-        </div>
-      </Link>
-    </Button>
+    <motion.div whileHover={{ scale: 1.15 }}>
+      <Button
+        asChild
+        variant={"ghost"}
+        className={cn(
+          "w-full h-12",
+          collapsed ? "justify-center" : "justify-start",
+          isActive && " bg-accent"
+        )}
+      >
+        <Link href={href}>
+          <div className="flex items-center gap-x-4">
+            <Icon className={cn("h-4 w-4", collapsed ? "mr-0" : "mr-2")} />
+            {!collapsed && <span>{label}</span>}
+          </div>
+        </Link>
+      </Button>
+    </motion.div>
   );
 };
 
