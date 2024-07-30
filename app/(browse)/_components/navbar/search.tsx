@@ -28,25 +28,24 @@ export const Search = () => {
     setValue("");
   };
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 1, scale: 1 }}
+      whileHover={{
+        scale: 1.15,
+        opacity: 0.95,
+        transition: { duration: 0.15 },
+      }}
+      whileFocus={{ scale: 1, transition: { duration: 0.2 } }}
       onSubmit={onSubmit}
       className="relative w-full lg:w-[400px] flex items-center"
     >
-      <motion.input
-        initial={{ opacity: 1, scale: 1 }}
-        whileHover={{
-          scale: 1.15,
-          opacity: 0.95,
-          transition: { duration: 0.15 },
-        }}
-        whileFocus={{ scale: 1, transition: { duration: 0.2 } }}
+      <Input
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
         }}
         placeholder="Search"
         className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 hover:scale-125",
           "rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 "
         )}
       />
@@ -77,6 +76,6 @@ export const Search = () => {
           <SearchIcon className="h-5 w-5 text-muted-foreground" />
         </Button>
       </motion.div>
-    </form>
+    </motion.form>
   );
 };
