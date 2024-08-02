@@ -31,7 +31,7 @@ export const Search = () => {
     <motion.form
       initial={{ opacity: 1, scale: 1 }}
       whileHover={{
-        scale: 1.15,
+        scale: 1.05,
         opacity: 0.95,
         transition: { duration: 0.15 },
       }}
