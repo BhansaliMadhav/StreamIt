@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  nextjs:
+    build: .
+    deploy:
+      replicas: 2
+    env_file:
+      - .env
+  nginx:
+    image: nginx
+    container_name: nginx_lb_stream_it
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nextjs
+
+networks:
+  my_network:
